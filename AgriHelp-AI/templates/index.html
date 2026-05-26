@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AgriSight AI</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+
+<body>
+
+<div class="particles"></div>
+
+<div class="app-layout">
+
+    <aside class="sidebar">
+        <div class="logo">
+            <span>🌱</span>
+            <h2>AgriSight AI</h2>
+        </div>
+
+        <nav>
+            <a href="#home" class="active">Dashboard</a>
+            <a href="#disease">AI Scan</a>
+            <a href="#weather">Weather</a>
+            <a href="#soil">Soil Monitor</a>
+            <a href="#assistant">AI Assistant</a>
+        </nav>
+
+        <div class="sidebar-card">
+            <p>Crop Health</p>
+            <h3>92%</h3>
+            <span>Optimal Growth</span>
+        </div>
+    </aside>
+
+    <main class="main-content">
+
+        <section id="home" class="hero">
+            <div class="hero-text">
+                <span class="badge">Future Farming Intelligence</span>
+                <h1>AI-Powered Smart Farming Analytics Platform</h1>
+                <p>
+                    AgriSight AI helps farmers detect crop diseases, monitor soil,
+                    analyze weather, and receive intelligent farming recommendations
+                    using modern AI-powered analytics.
+                </p>
+
+                <div class="hero-actions">
+                    <a href="#disease" class="primary-btn">Start AI Scan</a>
+                    <a href="#assistant" class="secondary-btn">Ask AI Assistant</a>
+                </div>
+            </div>
+
+            <div class="hero-visual">
+                <div class="orb"></div>
+
+                <div class="ai-plant-card floating">
+                    <div class="plant-icon">🌿</div>
+                    <h3>AI Crop Vision</h3>
+                    <p>Scanning leaf health...</p>
+                    <div class="scan-line"></div>
+                </div>
+
+                <div class="mini-card card-one">
+                    <h4>Soil Moisture</h4>
+                    <p>68%</p>
+                </div>
+
+                <div class="mini-card card-two">
+                    <h4>Weather Risk</h4>
+                    <p>Low</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="analytics-grid">
+            <div class="glass-card">
+                <h3>🌡 Temperature</h3>
+                <p class="value">
+                    {% if weather %}
+                        {{ weather.temperature }}°C
+                    {% else %}
+                        --
+                    {% endif %}
+                </p>
+                <span>Real-time weather data</span>
+            </div>
+
+            <div class="glass-card">
+                <h3>💧 Humidity</h3>
+                <p class="value">
+                    {% if weather %}
+                        {{ weather.humidity }}%
+                    {% else %}
+                        --
+                    {% endif %}
+                </p>
+                <span>Crop disease risk indicator</span>
+            </div>
+
+            <div class="glass-card">
+                <h3>🌱 Soil Moisture</h3>
+                <p class="value">68%</p>
+                <span>Demo IoT-ready soil condition</span>
+            </div>
+
+            <div class="glass-card">
+                <h3>💨 Wind Speed</h3>
+                <p class="value">
+                    {% if weather %}
+                        {{ weather.wind }}
+                    {% else %}
+                        --
+                    {% endif %}
+                </p>
+                <span>m/s wind reading</span>
+            </div>
+        </section>
+
+        <section class="dashboard-grid">
+
+            <div id="disease" class="panel large-panel">
+                <div class="panel-header">
+                    <h2>Smart Plant Disease Detection</h2>
+                    <span>Real AI Model</span>
+                </div>
+
+                <div class="disease-content">
+
+                    <form method="POST" enctype="multipart/form-data" class="upload-box">
+                        <div class="upload-icon">📷</div>
+                        <h3>Upload Crop Image</h3>
+                        <p>AI will scan crop disease using trained model.</p>
+
+                        <input type="file" name="crop_image" id="cropImage" accept="image/*" required>
+
+                        <button type="submit">Scan with AI</button>
+                    </form>
+
+                    <div class="disease-result">
+                        <h3>AI Detection Result</h3>
+
+                        {% if prediction %}
+                            <p class="status healthy">{{ prediction }}</p>
+                            <p>Confidence: {{ confidence }}%</p>
+
+                            {% if prediction == "Healthy Leaf" %}
+                                <p>✅ Crop looks healthy. Continue regular monitoring.</p>
+                            {% else %}
+                                <p>⚠ Disease detected. Check irrigation, fertilizer balance, and leaf condition.</p>
+                            {% endif %}
+                        {% else %}
+                            <p class="status healthy">Waiting for Scan</p>
+                            <p>Upload a crop image to begin AI analysis.</p>
+                        {% endif %}
+
+                        <div class="progress">
+                            <span style="width: 92%;"></span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div id="weather" class="panel">
+                <div class="panel-header">
+                    <h2>Weather Analytics</h2>
+                    <span>Live</span>
+                </div>
+
+                <form method="POST" class="weather-form">
+                    <input type="text" name="city" value="{{ city }}" placeholder="Enter city name">
+                    <input type="hidden" name="query" value="{{ query }}">
+                    <button type="submit">Update Weather</button>
+                </form>
+
+                <div class="weather-list">
+                    {% if weather %}
+                        <p>📍 City: {{ weather.city }}</p>
+                        <p>🌤 Condition: {{ weather.condition }}</p>
+                        <p>🌡 Temperature: {{ weather.temperature }} °C</p>
+                        <p>💧 Humidity: {{ weather.humidity }}%</p>
+                        <p>💨 Wind Speed: {{ weather.wind }} m/s</p>
+                    {% else %}
+                        <p>Weather data unavailable. Check city name or API key.</p>
+                    {% endif %}
+                </div>
+            </div>
+
+            <div class="panel">
+                <div class="panel-header">
+                    <h2>Crop Growth Graph</h2>
+                    <span>AI Forecast</span>
+                </div>
+
+                <div class="chart">
+                    <div style="height: 40%;"></div>
+                    <div style="height: 65%;"></div>
+                    <div style="height: 50%;"></div>
+                    <div style="height: 80%;"></div>
+                    <div style="height: 70%;"></div>
+                    <div style="height: 92%;"></div>
+                </div>
+            </div>
+
+            <div id="soil" class="panel large-panel">
+                <div class="panel-header">
+                    <h2>Soil & Climate Monitoring</h2>
+                    <span>IoT Ready</span>
+                </div>
+
+                <div class="soil-grid">
+                    <div>
+                        <h3>Soil Moisture</h3>
+                        <div class="circle-meter">68%</div>
+                    </div>
+
+                    <div>
+                        <h3>Soil Temperature</h3>
+                        <div class="circle-meter blue">27°C</div>
+                    </div>
+
+                    <div>
+                        <h3>Nutrient Level</h3>
+                        <div class="circle-meter">Good</div>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+        <section id="assistant" class="assistant-panel">
+            <div class="assistant-left">
+                <h2>AgriSight AI Assistant</h2>
+                <p>
+                    Ask questions about crop disease, fertilizer, weather,
+                    pest control, soil health, and irrigation planning.
+                </p>
+
+                <div class="quick-prompts">
+                    <button type="button" class="quick-btn" data-query="Which fertilizer is good for rice?">Rice Fertilizer</button>
+                    <button type="button" class="quick-btn" data-query="How to control pest in cotton?">Cotton Pest</button>
+                    <button type="button" class="quick-btn" data-query="Give irrigation advice for maize">Maize Irrigation</button>
+                    <button type="button" class="quick-btn" data-query="How to identify tomato leaf disease?">Tomato Disease</button>
+                </div>
+            </div>
+
+            <div class="assistant-chat">
+                <form method="POST">
+                    <input type="hidden" name="city" value="{{ city }}">
+                    <textarea id="queryBox" name="query" placeholder="Ask AgriSight AI..." required>{{ query }}</textarea>
+                    <button type="submit">Generate AI Advisory ✨</button>
+                </form>
+
+                {% if response %}
+                <div class="response-box">
+                    <h3>🤖 AI Response</h3>
+                    <p id="aiResponse">{{ response }}</p>
+                </div>
+                {% endif %}
+            </div>
+        </section>
+
+    </main>
+</div>
+
+<script src="/static/script.js"></script>
+</body>
+</html>
