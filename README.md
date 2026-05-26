@@ -1,2 +1,1 @@
-# AgriHelp-AI
-AI-powered smart farming platform for crop disease detection, soil monitoring, weather analytics, and farming assistance using Python, Flask, and OpenCV.
+AgriHelp-AI is a student-level smart farming project that helps farmers detect crop diseases and monitor soil and weather conditions using Python, Flask, and AI-based analysis.
