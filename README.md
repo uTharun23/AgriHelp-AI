@@ -5,6 +5,8 @@ AgriSight AI is an advanced, premium-tier smart farming analytics and diagnostic
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2FuTharun23%2FAgriHelp-AI)
 [![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https%3A%2F%2Fgithub.com%2FuTharun23%2FAgriHelp-AI)
 
+🌐 **Live Demo Link**: [https://agri-help-ai-u-tharun23s-projects.vercel.app](https://agri-help-ai-u-tharun23s-projects.vercel.app)
+
 ---
 
 ## 🌐 Deploying Your Live Demo
