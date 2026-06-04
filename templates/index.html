@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en" class="dark-theme">
+<head>
+    <meta charset="UTF-8">
+    <title>AgriSight AI - Premium Smart Farming Analytics</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<!-- High-Tech Animated Background -->
+<div class="particles"></div>
+<div class="glow-orbs">
+    <div class="glow-orb orb-1"></div>
+    <div class="glow-orb orb-2"></div>
+</div>
+
+<!-- Main Application Layout -->
+<div class="app-layout">
+
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar">
+        <div class="logo">
+            <span class="logo-emoji">🌿</span>
+            <h2>AgriSight <span class="accent-text">AI</span></h2>
+        </div>
+
+        <nav>
+            <a href="#home" class="nav-link active" data-target="home">
+                <span class="nav-icon">📊</span> Dashboard
+            </a>
+            <a href="#disease" class="nav-link" data-target="disease">
+                <span class="nav-icon">📷</span> AI Leaf Scan
+            </a>
+            <a href="#weather" class="nav-link" data-target="weather">
+                <span class="nav-icon">🌤</span> Weather Insights
+            </a>
+            <a href="#soil" class="nav-link" data-target="soil">
+                <span class="nav-icon">🌱</span> Soil Monitor
+            </a>
+            <a href="#assistant" class="nav-link" data-target="assistant">
+                <span class="nav-icon">💬</span> AI Care Chat
+            </a>
+        </nav>
+
+        <!-- Sidebar Crop Status Card -->
+        <div class="sidebar-card">
+            <div class="sidebar-card-header">
+                <p>Crop Health</p>
+                <span class="live-pulse"></span>
+            </div>
+            <h3>94.8%</h3>
+            <span>Crop Vigor Index</span>
+            <div class="mini-bar">
+                <span style="width: 94.8%;"></span>
+            </div>
+        </div>
+
+        <!-- Theme Toggle Controls -->
+        <div class="theme-toggle-container">
+            <button id="themeToggleBtn" type="button" class="theme-btn">
+                <span class="theme-icon">☀️</span>
+                <span class="theme-text">Light Mode</span>
+            </button>
+        </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="main-content">
+
+        <!-- Hero Welcome Section -->
+        <section id="home" class="hero section-pane">
+            <div class="hero-text">
+                <span class="badge">👨‍🌾 Smart Farming Intel v1.4</span>
+                <h1>AI-Powered Smart Farming Analytics Platform</h1>
+                <p>
+                    AgriSight AI leverages computer vision and real-time agronomic telemetry to detect crop diseases, monitor soil chemical status, analyze micro-climatic risks, and deliver optimized, chemical-free treatment advisories.
+                </p>
+
+                <div class="hero-actions">
+                    <a href="#disease" class="primary-btn">Start AI Leaf Scan</a>
+                    <a href="#assistant" class="secondary-btn">Consult AI Chat</a>
+                </div>
+            </div>
+
+            <!-- Glowing Abstract Plant Animation Card -->
+            <div class="hero-visual">
+                <div class="orb-container">
+                    <div class="orb-radar"></div>
+                    <div class="orb"></div>
+                </div>
+
+                <div class="ai-plant-card floating">
+                    <div class="plant-header">
+                        <span class="plant-icon">🌿</span>
+                        <div class="plant-meta">
+                            <h4>Leaf Diagnostics</h4>
+                            <p class="scanning-status">Ready to Scan</p>
+                        </div>
+                    </div>
+                    <div class="scan-line"></div>
+                </div>
+
+                <div class="mini-card card-one">
+                    <h4>Soil Moisture</h4>
+                    <p class="live-moisture">68.4%</p>
+                </div>
+
+                <div class="mini-card card-two">
+                    <h4>Climate Risk</h4>
+                    <p class="live-risk text-green">Optimal</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Dynamic Real-Time Weather & Telemetry Cards -->
+        <section class="analytics-grid">
+            <div class="glass-card">
+                <div class="card-header-icon">
+                    <span class="card-emoji">🌡️</span>
+                    <h3>Temperature</h3>
+                </div>
+                <p class="value">
+                    {% if weather %}
+                        {{ weather.temperature }}<span class="unit">°C</span>
+                    {% else %}
+                        28.5<span class="unit">°C</span>
+                    {% endif %}
+                </p>
+                <span class="card-sub">Microclimate sensors active</span>
+            </div>
+
+            <div class="glass-card">
+                <div class="card-header-icon">
+                    <span class="card-emoji">💧</span>
+                    <h3>Humidity</h3>
+                </div>
+                <p class="value">
+                    {% if weather %}
+                        {{ weather.humidity }}<span class="unit">%</span>
+                    {% else %}
+                        65<span class="unit">%</span>
+                    {% endif %}
+                </p>
+                <span class="card-sub">Crop disease risk threshold</span>
+            </div>
+
+            <div class="glass-card">
+                <div class="card-header-icon">
+                    <span class="card-emoji">💨</span>
+                    <h3>Wind Speed</h3>
+                </div>
+                <p class="value">
+                    {% if weather %}
+                        {{ weather.wind }}<span class="unit"> m/s</span>
+                    {% else %}
+                        3.2<span class="unit"> m/s</span>
+                    {% endif %}
+                </p>
+                <span class="card-sub">Spray drift velocity limit</span>
+            </div>
+
+            <div class="glass-card highlight-card">
+                <div class="card-header-icon">
+                    <span class="card-emoji">⚡</span>
+                    <h3>System Status</h3>
+                </div>
+                <p class="value status-text">ONLINE</p>
+                <span class="card-sub">IoT nodes reporting</span>
+            </div>
+        </section>
+
+        <!-- Main Dashboard Grid -->
+        <section class="dashboard-grid">
+
+            <!-- Smart Plant Disease Scanner Panel -->
+            <div id="disease" class="panel large-panel section-pane">
+                <div class="panel-header">
+                    <div class="panel-title-block">
+                        <h2>Computer Vision Crop Scanner</h2>
+                        <p class="panel-subtitle">Upload a photo to locate leaf diseases & get organic/chemical treatment plans.</p>
+                    </div>
+                    <span class="badge-status">AI Active</span>
+                </div>
+
+                <div class="disease-container">
+                    <div class="scanner-controls">
+                        <!-- Crop Type Selector -->
+                        <div class="form-group">
+                            <label for="cropType">Select Crop Leaf Type:</label>
+                            <select id="cropType" name="crop_type">
+                                <option value="rice">Rice / Paddy</option>
+                                <option value="cotton">Cotton</option>
+                                <option value="maize">Maize / Corn</option>
+                                <option value="tomato">Tomato</option>
+                                <option value="other" selected>Other / General</option>
+                            </select>
+                        </div>
+
+                        <!-- Modern Drop Area -->
+                        <div class="upload-drop-zone" id="dropZone">
+                            <input type="file" id="cropImage" accept="image/*" class="file-input">
+                            <div class="upload-hud-content">
+                                <div class="hud-icon">📸</div>
+                                <h3>Drag & Drop Leaf Photo</h3>
+                                <p>or click to browse local files</p>
+                                <span class="format-hint">Supports JPEG, PNG up to 5MB</span>
+                            </div>
+                            
+                            <!-- Leaf Scan HUD Overlay Container -->
+                            <div class="scan-hud-container" id="scanHud">
+                                <img id="previewImage" src="" alt="Leaf Preview" class="uploaded-preview">
+                                <div class="laser-scanner" id="scanLaser"></div>
+                                <canvas id="scanCanvas" class="scan-bbox-canvas"></canvas>
+                                <div class="scan-progress-bar" id="scanProgressBar">
+                                    <div class="scan-progress-fill" id="scanProgressFill"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Scan Results Panel -->
+                    <div class="scanner-results-container" id="scannerResults">
+                        <div class="results-default-msg" id="resultsDefaultMsg">
+                            <div class="msg-icon">📊</div>
+                            <h3>Diagnostics Queue</h3>
+                            <p>Select your crop type and upload a clear leaf image to initialize optical analytics.</p>
+                        </div>
+
+                        <!-- Results Details (Initially Hidden) -->
+                        <div class="results-active-card hidden" id="resultsActiveCard">
+                            <div class="result-card-header">
+                                <h3 id="resultDiseaseName">Rice Blast Disease</h3>
+                                <div class="badge-row">
+                                    <span class="status-badge" id="resultStatus">DISEASED</span>
+                                    <span class="confidence-badge" id="resultConfidence">94.2% Match</span>
+                                </div>
+                            </div>
+
+                            <p class="severity-rating" id="resultSeverity">Severity: Moderate (24% Leaf Area Affected)</p>
+
+                            <!-- Results Tabs -->
+                            <div class="result-tabs-row">
+                                <button class="result-tab active" data-tab="overview">Overview</button>
+                                <button class="result-tab" data-tab="chemical">Chemical Action</button>
+                                <button class="result-tab" data-tab="biological">Biological/Organic</button>
+                                <button class="result-tab" data-tab="prevention">Prevention</button>
+                            </div>
+
+                            <!-- Tab Contents -->
+                            <div class="tab-content active" id="tab-overview">
+                                <h4>Key Symptoms:</h4>
+                                <p id="resultSymptoms">Spindle-shaped spots on leaves, greyish centers with reddish-brown margins.</p>
+                            </div>
+                            <div class="tab-content" id="tab-chemical">
+                                <h4>Chemical Spray Plan:</h4>
+                                <p id="resultChemical">Apply Tricyclazole 75 WP at 0.6 g/L or Azoxystrobin 25 SC at 1 mL/L.</p>
+                            </div>
+                            <div class="tab-content" id="tab-biological">
+                                <h4>Organic & Biological Controls:</h4>
+                                <p id="resultBiological">Foliar spray of Pseudomonas fluorescens at 10g/L or Bacillus subtilis at 5g/L.</p>
+                            </div>
+                            <div class="tab-content" id="tab-prevention">
+                                <h4>Preventive Crop Management:</h4>
+                                <p id="resultPrevention">Avoid excessive nitrogen fertilizers, burn/remove crop residues, crop rotation.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Dynamic Weather Analytics & Advisories -->
+            <div id="weather" class="panel section-pane">
+                <div class="panel-header">
+                    <h2>Agronomic Weather Hub</h2>
+                    <span class="live-badge">Live Feed</span>
+                </div>
+
+                <form method="POST" class="weather-form" id="weatherForm">
+                    <div class="weather-input-wrapper">
+                        <input type="text" name="city" id="cityInput" value="{{ city }}" placeholder="Enter location name..." required>
+                        <button type="submit" class="weather-submit-btn">Update</button>
+                    </div>
+                </form>
+
+                <div class="weather-details-card">
+                    <div class="weather-city-header">
+                        <h3 id="weatherCity">📍 {{ city }}</h3>
+                        <span id="weatherStatus" class="weather-main-condition">{% if weather %}{{ weather.condition }}{% else %}Clear{% endif %}</span>
+                    </div>
+
+                    <div class="weather-index-row">
+                        <div class="weather-index-item">
+                            <span class="index-label">Wind</span>
+                            <span class="index-val" id="weatherWind">{% if weather %}{{ weather.wind }} m/s{% else %}2.5 m/s{% endif %}</span>
+                        </div>
+                        <div class="weather-index-item">
+                            <span class="index-label">Humidity</span>
+                            <span class="index-val" id="weatherHum">{% if weather %}{{ weather.humidity }}%{% else %}65%{% endif %}</span>
+                        </div>
+                    </div>
+
+                    <!-- Agronomic Insights Generated Dynamically -->
+                    <div class="agronomic-insights">
+                        <h4>Agronomic Suitability Warnings:</h4>
+                        
+                        <div class="insight-badge-card">
+                            <div class="badge-indicator">
+                                <span class="indicator-title">Spray Window:</span>
+                                <span class="indicator-badge status-green" id="spraySuitability">
+                                    {% if weather %}{{ weather.spraying_suitability }}{% else %}Safe & Optimal{% endif %}
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="insight-badge-card">
+                            <div class="badge-indicator">
+                                <span class="indicator-title">Irrigation Needs:</span>
+                                <span class="indicator-badge status-blue" id="irrigationNeed">
+                                    {% if weather %}{{ weather.irrigation_need }}{% else %}Normal Scheduling{% endif %}
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="insight-badge-card">
+                            <div class="badge-indicator">
+                                <span class="indicator-title">Infection Risk:</span>
+                                <span class="indicator-badge status-green" id="diseaseRisk">
+                                    {% if weather %}{{ weather.disease_risk }}{% else %}Normal{% endif %}
+                                </span>
+                            </div>
+                        </div>
+                        
+                        <p class="agri-advice" id="agriWeatherAdvice">
+                            {% if weather %}{{ weather.advice }}{% else %}Weather is favorable for standard spraying and cultivation plans.{% endif %}
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- IoT Soil & Climate Telemetry Panel -->
+            <div id="soil" class="panel large-panel section-pane">
+                <div class="panel-header">
+                    <div class="panel-title-block">
+                        <h2>Live IoT Soil Telemetry</h2>
+                        <p class="panel-subtitle">Streaming data from field telemetry sensor grids.</p>
+                    </div>
+                    <div class="telemetry-switch-wrapper">
+                        <span class="telemetry-switch-label">Live Stream</span>
+                        <label class="switch-toggle">
+                            <input type="checkbox" id="iotToggle">
+                            <span class="slider-round"></span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="soil-dashboard-content">
+                    <!-- Circular Gauges -->
+                    <div class="meters-row">
+                        <div class="meter-card">
+                            <h3>Soil Moisture</h3>
+                            <div class="circular-progress" id="moistureProgress" style="background: conic-gradient(var(--accent-color) 244.8deg, var(--card-bg-light) 0deg);">
+                                <div class="inner-circle">
+                                    <span class="circle-val" id="moistureVal">68%</span>
+                                </div>
+                            </div>
+                            <span class="meter-status text-green">Optimal</span>
+                        </div>
+
+                        <div class="meter-card">
+                            <h3>Soil Temp</h3>
+                            <div class="circular-progress" id="tempProgress" style="background: conic-gradient(var(--info-color) 97.2deg, var(--card-bg-light) 0deg);">
+                                <div class="inner-circle">
+                                    <span class="circle-val" id="tempVal">27°C</span>
+                                </div>
+                            </div>
+                            <span class="meter-status text-green">Normal</span>
+                        </div>
+
+                        <div class="meter-card">
+                            <h3>Soil pH</h3>
+                            <div class="circular-progress" id="phProgress" style="background: conic-gradient(var(--warning-color) 234deg, var(--card-bg-light) 0deg);">
+                                <div class="inner-circle">
+                                    <span class="circle-val" id="phVal">6.5</span>
+                                </div>
+                            </div>
+                            <span class="meter-status text-green">Optimal Neutral</span>
+                        </div>
+                    </div>
+
+                    <!-- NPK Bar Values -->
+                    <div class="npk-panel-card">
+                        <h3>Soil Nutrient Index (N-P-K)</h3>
+                        <div class="npk-row">
+                            <div class="npk-bar-group">
+                                <div class="npk-bar-label">
+                                    <span>Nitrogen (N)</span>
+                                    <span id="nVal">182 ppm</span>
+                                </div>
+                                <div class="npk-progress">
+                                    <div class="npk-progress-fill npk-n" id="nBar" style="width: 72%;"></div>
+                                </div>
+                            </div>
+
+                            <div class="npk-bar-group">
+                                <div class="npk-bar-label">
+                                    <span>Phosphorus (P)</span>
+                                    <span id="pVal">46 ppm</span>
+                                </div>
+                                <div class="npk-progress">
+                                    <div class="npk-progress-fill npk-p" id="pBar" style="width: 58%;"></div>
+                                </div>
+                            </div>
+
+                            <div class="npk-bar-group">
+                                <div class="npk-bar-label">
+                                    <span>Potassium (K)</span>
+                                    <span id="kVal">210 ppm</span>
+                                </div>
+                                <div class="npk-progress">
+                                    <div class="npk-progress-fill npk-k" id="kBar" style="width: 82%;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- IoT Smart Actions -->
+                    <div class="iot-action-panel">
+                        <h3>Actuator Actions</h3>
+                        <div class="actions-grid">
+                            <button type="button" class="action-btn" data-action="drip">
+                                <span class="btn-emoji">💧</span> Trigger Drip Irrigation
+                            </button>
+                            <button type="button" class="action-btn" data-action="npk">
+                                <span class="btn-emoji">🧪</span> Distribute Soil Fertigation
+                            </button>
+                            <button type="button" class="action-btn" data-action="fan">
+                                <span class="btn-emoji">💨</span> Ventilate Area Canopy
+                            </button>
+                            <button type="button" class="action-btn" data-action="lime">
+                                <span class="btn-emoji">🪵</span> Apply pH Neutralizer
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ChatGPT-style AI Assistant Chat Console -->
+            <div id="assistant" class="panel large-panel section-pane">
+                <div class="panel-header">
+                    <div class="panel-title-block">
+                        <h2>AgriSight AI Advisory Chat</h2>
+                        <p class="panel-subtitle">Ask questions regarding pest containment, crop rotations, fertilizing, or weather issues.</p>
+                    </div>
+                    <span class="badge-status bg-sparkle">GenAI Engine</span>
+                </div>
+
+                <div class="assistant-content">
+                    <div class="chat-container">
+                        <!-- Chat Bubble Log -->
+                        <div class="chat-log" id="chatLog">
+                            <div class="chat-message bot">
+                                <div class="message-avatar">🤖</div>
+                                <div class="message-body">
+                                    <p>Hello! I am your AgriSight AI agronomy assistant. Ask me questions about crops, fertilizers, pest control, or field prep.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Suggestions Pills -->
+                        <div class="quick-pills-container">
+                            <button type="button" class="quick-pill" data-query="Which fertilizer split is best for rice paddy?">🌾 Rice Fertilizer</button>
+                            <button type="button" class="quick-pill" data-query="How to manage pink bollworm in cotton fields?">☁ Cotton Pests</button>
+                            <button type="button" class="quick-pill" data-query="What is the critical water stage for maize?">🌽 Maize Water</button>
+                            <button type="button" class="quick-pill" data-query="How to control tomato blights organically?">🍅 Tomato Blight</button>
+                        </div>
+
+                        <!-- Chat Send Form -->
+                        <form id="chatForm" class="chat-input-row">
+                            <textarea id="chatInput" placeholder="Type agricultural question here..." required></textarea>
+                            <button type="submit" class="chat-send-btn">
+                                <span class="btn-text">Consult</span>
+                                <span class="btn-emoji">✨</span>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+    </main>
+</div>
+
+<!-- Floating Toast Notification System -->
+<div class="toast-container" id="toastContainer"></div>
+
+<!-- Local Script Code -->
+<script src="/static/script.js"></script>
+</body>
+</html>
