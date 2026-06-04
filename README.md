@@ -2,7 +2,24 @@
 
 AgriSight AI is an advanced, premium-tier smart farming analytics and diagnostic platform. It leverages computer vision leaf diagnostics, real-time simulated IoT telemetry, micro-climate weather analysis, and a custom conversational AI assistant to deliver optimized agronomic insights for sustainable farming.
 
-🌐 **Live Demo Link**: [https://agrihelp-ai.vercel.app](https://agrihelp-ai.vercel.app)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2FuTharun23%2FAgriHelp-AI)
+[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https%3A%2F%2Fgithub.com%2FuTharun23%2FAgriHelp-AI)
+
+---
+
+## 🌐 Deploying Your Live Demo
+
+Because this project has just been pushed to GitHub, you need to initiate the deployment inside your own Vercel or Render account to make the live link active. Choose one of the easy methods below:
+
+### Method A: One-Click Deploy (Recommended)
+1.  Click the **Deploy with Vercel** button above.
+2.  Log in with your GitHub account.
+3.  Choose a name for your project repository and click **Create**. Vercel will clone, build, and host the live link for you automatically!
+
+### Method B: Manual Git Connection
+1.  Go to [Vercel Dashboard](https://vercel.com) (or [Render Dashboard](https://render.com)).
+2.  Click **Add New** > **Project** and select the **`AgriHelp-AI`** repository from your GitHub list.
+3.  Vercel will detect the `vercel.json` config and deploy it automatically. Once completed, it will provide your unique active live URL!
 
 ---
 
