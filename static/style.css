@@ -159,6 +159,12 @@ body {
     flex-direction: column;
     z-index: 100;
     transition: background-color var(--transition-normal), border var(--transition-normal);
+    overflow-y: auto;
+    scrollbar-width: none; /* Hide scrollbar for Firefox */
+}
+
+.sidebar::-webkit-scrollbar {
+    display: none; /* Hide scrollbar for Chrome/Safari/Edge */
 }
 
 .sidebar::before {
@@ -175,6 +181,7 @@ body {
     align-items: center;
     gap: 12px;
     margin-bottom: 40px;
+    flex-shrink: 0;
 }
 
 .logo-emoji {
@@ -201,6 +208,7 @@ body {
     flex-direction: column;
     gap: 8px;
     flex-grow: 1;
+    flex-shrink: 0;
 }
 
 .nav-link {
@@ -243,6 +251,7 @@ body {
     margin-bottom: 24px;
     position: relative;
     overflow: hidden;
+    flex-shrink: 0;
 }
 
 .sidebar-card-header {
@@ -312,6 +321,7 @@ body {
 .theme-toggle-container {
     border-top: 1px solid var(--border-color);
     padding-top: 20px;
+    flex-shrink: 0;
 }
 
 .theme-btn {
