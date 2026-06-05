@@ -56,14 +56,55 @@ AgriSight AI is an advanced, premium-tier smart farming analytics and diagnostic
 
 ---
 
-## 👨‍💻 Developed By
+## 👨‍💻 Author
 
-### Tharun Ummadala
-B.Tech Information Technology Student
-*   **GitHub**: [https://github.com/uTharun23](https://github.com/uTharun23)
-*   **LinkedIn**: [https://linkedin.com/in/tharunummadala](https://linkedin.com/in/tharunummadala)
+### Ummadala Tharun
+
+Aspiring Software Developer | Python Developer | Computer Vision Enthusiast
+
+📧 Email: [tharunummadala@gmail.com](mailto:tharunummadala@gmail.com)
+
+🔗 GitHub: https://github.com/uTharun23
+
+🔗 LinkedIn: [www.linkedin.com/in/tharunummadala](http://www.linkedin.com/in/tharunummadala)
+
+---
+
+## 👨‍💻 Author
+
+### Ummadala Tharun
+
+Aspiring Software Developer | Python Developer | Computer Vision Enthusiast
+
+📧 Email: [tharunummadala@gmail.com](mailto:tharunummadala@gmail.com)
+
+🔗 GitHub: https://github.com/uTharun23
+
+🔗 LinkedIn: [www.linkedin.com/in/tharunummadala](http://www.linkedin.com/in/tharunummadala)
 
 ---
 
 ## ⭐ Project Scope
 Developed for learning purposes, portfolios, smart agriculture innovation showcase, and academic presentation.
+---
+
+## 👨‍💻 Author
+
+### Ummadala Tharun
+
+Aspiring Software Developer | Python Developer | Computer Vision Enthusiast
+
+📧 Email: [tharunummadala@gmail.com](mailto:tharunummadala@gmail.com)
+
+🔗 GitHub: https://github.com/uTharun23
+
+🔗 LinkedIn: [www.linkedin.com/in/tharunummadala](http://www.linkedin.com/in/tharunummadala)
+
+---
+
+## 📜 License
+
+This project is developed for educational, research, and portfolio purposes.
+
+© 2026 Ummadala Tharun. All Rights Reserved.
+
