@@ -1804,14 +1804,20 @@ select option {
     line-height: 1.4;
 }
 
-/* Responsive Adaptive CSS Layout styling */
+/* ==========================================================================
+   RESPONSIVE ADAPTIVE LAYOUT OVERHAUL (320px to 1440px+)
+   ========================================================================== */
+
+/* --- VIEWPORTS UNDER 1200px (Desktop-to-Tablet Transition) --- */
 @media (max-width: 1200px) {
+    /* Collapse sidebar to icon-only vertical menu to maximize content width */
     .sidebar {
         width: 80px;
         padding: 24px 10px;
         align-items: center;
     }
 
+    /* Hide text nodes, panels, and toggle text on condensed layout */
     .logo h2, 
     .sidebar-card, 
     .theme-text,
@@ -1823,6 +1829,7 @@ select option {
         font-size: 38px;
     }
 
+    /* Transform navigation links into circular icon buttons */
     .nav-link {
         justify-content: center;
         padding: 14px;
@@ -1840,89 +1847,452 @@ select option {
         display: none !important;
     }
 
+    /* Adjust main content left margin to match the slim sidebar */
     .main-content {
         margin-left: 104px;
         width: calc(100% - 104px);
     }
 }
 
+/* --- VIEWPORTS UNDER 1024px (Tablets & Landscape Mobile) --- */
 @media (max-width: 1024px) {
+    /* Convert welcome hero section into a vertical layout stack */
     .hero {
         grid-template-columns: 1fr;
-        padding: 36px;
+        padding: 32px 24px;
+        min-height: auto;
     }
 
+    /* Reposition and clamp hero visual height */
     .hero-visual {
-        height: 280px;
-        margin-top: 20px;
+        height: 300px;
+        margin-top: 24px;
     }
 
+    /* Convert upper weather grid into a 2-column container */
     .analytics-grid {
         grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
     }
 
+    /* Convert disease scanner panel layout to single column flow */
     .disease-container {
         grid-template-columns: 1fr;
+        gap: 24px;
     }
 }
 
+/* --- VIEWPORTS UNDER 768px (iPad Portrait & Medium Mobile Devices) --- */
 @media (max-width: 768px) {
+    /* Set horizontal grid templates to stack vertically naturally */
     .app-layout {
         flex-direction: column;
     }
 
+    /* 
+       MOBILE SYSTEM HEADER:
+       Convert vertical sidebar into a sleek sticky top header bar.
+       Provides a fixed position and leaves navigation to the bottom.
+    */
     .sidebar {
-        position: relative;
-        width: auto;
-        inset: auto;
-        margin: 16px 16px 8px;
-        padding: 16px;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: auto;
+        width: 100%;
+        height: 64px;
+        margin: 0;
+        padding: 0 16px;
+        border-radius: 0;
+        border-left: none;
+        border-right: none;
+        border-top: none;
         flex-direction: row;
         justify-content: space-between;
         align-items: center;
-        height: auto;
+        z-index: 1000;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        overflow-y: visible; /* Prevent scrollbar within the header */
     }
 
     .logo {
         margin-bottom: 0;
     }
 
+    /* Re-enable logo branding text on the mobile top header for identity */
+    .logo h2 {
+        display: block !important;
+        font-size: 17px;
+        letter-spacing: -0.25px;
+    }
+
+    /* 
+       STICKY BOTTOM NAVIGATION:
+       Position the navigation row horizontally at the bottom of the viewport.
+       Improves mobile thumb-reach, accessibility, and creates a native app feel.
+    */
     .sidebar nav {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 68px;
+        background-color: var(--bg-sidebar);
+        border-top: 1px solid var(--border-color);
+        backdrop-filter: blur(28px);
+        -webkit-backdrop-filter: blur(28px);
+        display: flex;
         flex-direction: row;
-        gap: 12px;
+        justify-content: space-around;
+        align-items: center;
+        margin: 0;
+        padding: 0 6px;
+        z-index: 1000;
+        box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.15);
     }
 
+    /* Style bottom navigation link tabs with vertical stack icon + label */
     .nav-link {
-        width: auto;
-        height: auto;
-        border-radius: 12px;
-        padding: 8px 12px;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 3px;
+        padding: 6px 0;
+        width: 20%;
+        height: 100%;
+        border-radius: 0;
+        border: none;
+        background: none;
+        font-size: 9.5px !important;
+        font-weight: 700;
+        text-transform: uppercase;
+        color: var(--text-secondary);
+        transition: color var(--transition-fast);
     }
 
+    /* Restore labels on bottom nav links in smaller text format */
     .nav-link span:not(.nav-icon) {
-        display: none !important;
+        display: block !important;
     }
 
+    .nav-icon {
+        font-size: 20px;
+        margin-bottom: 1px;
+    }
+
+    .nav-link:hover {
+        transform: none; /* Disable horizontal slide hover effect on tabbar */
+    }
+
+    .nav-link.active {
+        background: none;
+        border-color: transparent;
+        color: var(--accent-color);
+        box-shadow: none;
+        text-shadow: 0 0 10px var(--accent-glow);
+    }
+
+    /* Compact theme toggle button shifted onto the right side of header */
     .theme-toggle-container {
+        display: block !important;
         padding-top: 0;
         border-top: none;
+        margin-top: 0;
     }
 
+    .theme-btn {
+        padding: 0;
+        width: 44px; /* Touch target optimized */
+        height: 44px;
+        border-radius: 50%;
+        justify-content: center;
+        box-shadow: none;
+    }
+
+    .theme-text {
+        display: none !important; /* Hide text label on header toggle */
+    }
+
+    /* 
+       MAIN VIEW CONTAINER PAD:
+       Adds space on top (64px header) and bottom (68px navigation) 
+       to prevent screen overlaps on mobile viewports.
+    */
     .main-content {
         margin-left: 0;
         width: 100%;
-        padding: 12px 16px 24px;
+        padding: 80px 16px 88px; /* Safe padding zones */
     }
 
+    /* Reduce vertical padding inside layout cards on mobile */
+    .panel {
+        padding: 20px;
+        border-radius: 20px;
+        margin-bottom: 20px;
+    }
+
+    .glass-card {
+        padding: 16px;
+        border-radius: 20px;
+        height: auto !important; /* Remove fixed heights on metrics cards to prevent clipping */
+        min-height: 125px;
+    }
+
+    /* Convert upper dashboard indicators to full-width stacked column */
     .analytics-grid {
         grid-template-columns: 1fr;
+        gap: 12px;
     }
 
-    .meters-row {
-        grid-template-columns: 1fr;
+    /* Stacks NPK soil bars vertically and adjusts paddings */
+    .npk-panel-card {
+        padding: 16px;
     }
 
+    /* Convert actuators grid layout into a 2x2 matrix */
     .actions-grid {
         grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+    }
+}
+
+/* --- VIEWPORTS UNDER 600px (Medium-Small Mobile Devices) --- */
+@media (max-width: 600px) {
+    /* 
+       COMPACT SOIL telemetry GAUGE CENTER:
+       Rather than stacking 3 massive progress circle gauges vertically,
+       we render them side-by-side in a responsive 3-column layout with 
+       scaled down sizes. This preserves vertical estate and facilitates comparison.
+    */
+    .meters-row {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 8px;
+    }
+
+    .meter-card {
+        padding: 12px 6px;
+        border-radius: 16px;
+    }
+
+    .meter-card h3 {
+        font-size: 11px;
+        margin-bottom: 8px;
+        letter-spacing: -0.25px;
+    }
+
+    .circular-progress {
+        width: 76px;
+        height: 76px;
+        margin-bottom: 8px;
+    }
+
+    .inner-circle {
+        width: 62px;
+        height: 62px;
+    }
+
+    .circle-val {
+        font-size: 16px;
+    }
+
+    .meter-status {
+        font-size: 9.5px;
+    }
+}
+
+/* --- VIEWPORTS UNDER 480px (Smartphones, e.g., 360px to 430px) --- */
+@media (max-width: 480px) {
+    /* Clamp card content paddings to maximize readable width */
+    .panel {
+        padding: 16px;
+    }
+
+    /* Hero welcome fonts clamp adjustments */
+    .hero h1 {
+        font-size: 28px;
+        letter-spacing: -0.5px;
+    }
+
+    .hero p {
+        font-size: 14.5px;
+        max-width: 100%;
+        margin-bottom: 24px;
+    }
+
+    /* Hero button actions stacked vertically to ensure full-width tap focus */
+    .hero-actions {
+        flex-direction: column;
+        gap: 10px;
+        width: 100%;
+    }
+
+    .primary-btn, 
+    .secondary-btn {
+        width: 100%;
+        padding: 14px 20px;
+        font-size: 14.5px;
+    }
+
+    /* 
+       HERO GRAPHIC COMPRESSION:
+       Eliminate outer floating visual nodes and center the principal diagnostics card
+       to avoid rendering off-canvas and triggering layout shifts/horizontal scrolls.
+    */
+    .hero-visual {
+        height: 180px;
+        margin-top: 12px;
+    }
+
+    .ai-plant-card {
+        position: relative;
+        width: 100%;
+        max-width: 230px;
+        top: auto;
+        right: auto;
+        margin: 0 auto;
+        transform: none !important;
+        animation: none !important; /* Disable heavy animation on low-power mobiles */
+    }
+
+    .card-one, 
+    .card-two, 
+    .orb-container {
+        display: none !important; /* Hide secondary decorative SVGs to save memory */
+    }
+
+    /* Weather Insights: stack title/badge vertically to prevent horizontal text overlaps */
+    .badge-indicator {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 6px;
+    }
+
+    .indicator-badge {
+        font-size: 10px;
+        padding: 3px 8px;
+    }
+
+    /* Crop scanner tab panels: enable swiping horizontally with clean hidden scrollbar */
+    .result-tabs-row {
+        gap: 2px;
+        scrollbar-width: none;
+    }
+
+    .result-tabs-row::-webkit-scrollbar {
+        display: none;
+    }
+
+    .result-tab {
+        padding: 8px 10px;
+        font-size: 12.5px;
+    }
+
+    /* Stacks actuators into a single-column layout for fat-finger tap safety */
+    .actions-grid {
+        grid-template-columns: 1fr;
+        gap: 8px;
+    }
+
+    .action-btn {
+        width: 100%;
+        padding: 16px;
+        font-size: 13.5px;
+        justify-content: flex-start; /* Consistent readability */
+    }
+
+    /* Adjust chat advisory container dimensions */
+    .chat-container {
+        padding: 12px;
+        height: clamp(350px, 50vh, 450px);
+    }
+
+    .chat-log {
+        gap: 12px;
+        margin-bottom: 12px;
+    }
+
+    .chat-message {
+        max-width: 90%;
+    }
+
+    .message-body {
+        padding: 10px 14px;
+        font-size: 13.5px;
+    }
+
+    /* 
+       CHATBOX CONTEXT COMPACTOR:
+       On thin displays, hide chat submit button text and transform into 
+       an icon-only circular submit button to maximize width for keyboard inputs.
+    */
+    .chat-input-row {
+        padding: 2px;
+        border-radius: 24px;
+    }
+
+    .chat-input-row textarea {
+        padding: 10px 12px;
+        font-size: 13.5px;
+        height: 40px;
+        min-height: 40px;
+    }
+
+    .chat-send-btn {
+        padding: 0;
+        width: 36px;
+        height: 36px;
+        min-width: 36px;
+        border-radius: 50%;
+        justify-content: center;
+        margin-right: 2px;
+        box-shadow: none;
+    }
+
+    .chat-send-btn .btn-text {
+        display: none !important;
+    }
+
+    .chat-send-btn .btn-emoji {
+        margin: 0;
+        font-size: 15px;
+    }
+
+    /* Toast Notification full width scaling with safe margins */
+    .toast-container {
+        left: 0;
+        right: 0;
+        padding: 0 16px;
+        bottom: 84px; /* Positioned safely above the bottom navigation bar */
+    }
+
+    .toast {
+        width: 100%;
+    }
+}
+
+/* --- VIEWPORTS DOWN TO 320px (Ultra-Small Screens, e.g., Galaxy Fold) --- */
+@media (max-width: 320px) {
+    /* Narrow down spacings to prevent horizontal truncation */
+    .main-content {
+        padding: 76px 8px 80px;
+    }
+
+    .logo h2 {
+        font-size: 15px;
+    }
+
+    .nav-link {
+        font-size: 8.5px !important;
+    }
+
+    .nav-icon {
+        font-size: 17px;
+    }
+
+    /* Compact suggestion pills */
+    .quick-pill {
+        padding: 6px 10px;
+        font-size: 11px;
     }
 }
