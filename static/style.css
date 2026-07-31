@@ -1913,7 +1913,10 @@ select option {
         align-items: center;
         z-index: 1000;
         box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-        overflow-y: visible; /* Prevent scrollbar within the header */
+        overflow: visible !important; /* Prevent clipping of fixed children */
+        backdrop-filter: none !important; /* [CRITICAL BUG FIX]: Prevents sidebar from acting as containing block for position: fixed nav */
+        -webkit-backdrop-filter: none !important;
+        background-color: var(--bg-app) !important; /* Use solid backdrop matching dark/light themes */
     }
 
     .logo {
